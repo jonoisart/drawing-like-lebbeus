@@ -1,0 +1,1292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A 12-week studio course in Lebbeus Woods's drawing method, one sheet per module, each linked to his works in museum collections.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231E2123'/%3E%3Cpath d='M4 28L28 4M4 20L20 4M12 28L28 12' stroke='%23ECEBE7' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px/1.4 system-ui,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Drawing like Lebbeus Woods</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: a drafting sheet. A title-block index on the left lists every sheet; one module sheet at a time fills the right. */
+:root {
+  --paper: #ECEBE7;
+  --surface: #F7F6F3;
+  --ink: #1E2123;
+  --lead: #585E61;
+  --rule: #CCC9C1;
+  --accent: #2E5157;
+  --sepia: #8A5A46;
+  --f-display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --f-body: "Spectral", Georgia, "Times New Roman", serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #141617; --surface: #1B1E1F; --ink: #E6E3DC; --lead: #9DA1A1;
+    --rule: #33383A; --accent: #94B8BD; --sepia: #CFA08A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #141617; --surface: #1B1E1F; --ink: #E6E3DC; --lead: #9DA1A1;
+  --rule: #33383A; --accent: #94B8BD; --sepia: #CFA08A; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.62;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--paper);
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.mono { font-family: var(--f-mono); }
+.label {
+  font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--lead);
+}
+
+/* ---------- frame ---------- */
+.app {
+  display: grid;
+  grid-template-columns: 16.5rem minmax(0, 1fr);
+  gap: 3.5rem;
+  max-width: 78rem;
+  margin: 0 auto;
+}
+.topbar { display: none; }
+
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px);
+  align-self: start;
+  max-height: 100vh; overflow-y: auto;
+  padding-block: 2rem 2rem;
+  display: flex; flex-direction: column; gap: 1.6rem;
+}
+.brand { display: flex; flex-direction: column; gap: 0.35rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--ink); }
+.brand-title {
+  font-family: var(--f-display); font-stretch: 68%; font-weight: 800;
+  font-size: 1.55rem; line-height: 1; text-transform: uppercase; letter-spacing: 0.01em;
+  color: var(--ink); text-decoration: none;
+}
+.progress { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { flex: 1; height: 3px; background: var(--rule); position: relative; }
+.progress-fill { position: absolute; inset: 0 auto 0 0; background: var(--accent); width: 0; }
+
+.nav-group { display: flex; flex-direction: column; gap: 0.15rem; }
+.nav-group > .label { padding: 0 0.6rem 0.35rem; }
+.nav a {
+  display: grid; grid-template-columns: 2.9rem minmax(0, 1fr) auto; align-items: baseline; gap: 0.4rem;
+  padding: 0.32rem 0.6rem; border-left: 2px solid transparent;
+  color: var(--lead); text-decoration: none; font-size: 0.95rem; line-height: 1.35;
+}
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="page"] {
+  color: var(--ink); border-left-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+}
+.nav .code { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--lead); }
+.tick {
+  width: 0.62rem; height: 0.62rem; border: 1px solid var(--rule); align-self: center;
+}
+.tick.on { background: var(--accent); border-color: var(--accent); }
+
+.sheet {
+  min-width: 0;
+  max-width: 47rem;
+  padding-block: 2.6rem 5rem;
+  display: flex; flex-direction: column; gap: 2.4rem;
+}
+.sheet:focus { outline: none; }
+
+/* ---------- type ---------- */
+.titleblock { display: flex; flex-direction: column; gap: 0.8rem; }
+.meta-row { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; }
+.meta-row .label b { color: var(--ink); font-weight: 500; }
+h1 {
+  font-family: var(--f-display); font-stretch: 66%; font-weight: 850;
+  font-size: clamp(2.5rem, 6.2vw, 4.4rem); line-height: 0.92; letter-spacing: 0.005em;
+  text-transform: uppercase; margin: 0; text-wrap: balance;
+}
+h2 {
+  font-family: var(--f-display); font-stretch: 78%; font-weight: 700;
+  font-size: 1.05rem; letter-spacing: 0.09em; text-transform: uppercase;
+  margin: 0; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+}
+h2 .label { letter-spacing: 0.06em; }
+.lede { font-size: 1.22rem; line-height: 1.5; margin: 0; max-width: 40rem; }
+p { margin: 0; max-width: 40rem; }
+section { display: flex; flex-direction: column; gap: 1rem; }
+.prose { display: flex; flex-direction: column; gap: 0.9rem; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+.chip {
+  font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.03em;
+  padding: 0.2rem 0.5rem; border: 1px solid var(--rule); color: var(--ink);
+}
+
+ol.drills { margin: 0; padding: 0; list-style: none; counter-reset: d; display: flex; flex-direction: column; gap: 0.9rem; max-width: 40rem; }
+ol.drills > li { counter-increment: d; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 0.5rem; }
+ol.drills > li::before {
+  content: counter(d, decimal-leading-zero); font-family: var(--f-mono); font-size: 0.78rem;
+  color: var(--sepia); padding-top: 0.28rem;
+}
+ul.plain { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.4rem; max-width: 40rem; }
+
+.callout {
+  border-left: 3px solid var(--sepia); padding: 0.2rem 0 0.2rem 1rem;
+  display: flex; flex-direction: column; gap: 0.35rem; max-width: 40rem;
+}
+.callout .label { color: var(--sepia); }
+blockquote {
+  margin: 0; font-family: var(--f-display); font-stretch: 75%; font-weight: 600;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem); line-height: 1.12; text-wrap: balance; max-width: 36rem;
+}
+.cite { font-family: var(--f-mono); font-size: 0.75rem; color: var(--lead); }
+
+/* ---------- tables ---------- */
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; line-height: 1.45; }
+th {
+  font-family: var(--f-mono); font-weight: 500; font-size: 0.7rem; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--lead); text-align: left; padding: 0 0.8rem 0.5rem 0; border-bottom: 1px solid var(--ink); white-space: nowrap;
+}
+td { padding: 0.6rem 0.8rem 0.6rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+td .mono { font-size: 0.8rem; }
+tr.rowlink { cursor: pointer; }
+tr.rowlink:hover td { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+
+/* ---------- examples ---------- */
+.ex-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.5rem), 1fr)); gap: 1rem; }
+.ex {
+  display: flex; flex-direction: column; gap: 0.45rem;
+  padding: 1rem 1.1rem 1.05rem; border: 1px solid var(--rule); background: var(--surface);
+  color: var(--ink); text-decoration: none; min-width: 0;
+}
+.ex:hover { border-color: var(--accent); }
+.ex-head { display: flex; justify-content: space-between; gap: 0.6rem; }
+.ex-title { font-family: var(--f-display); font-stretch: 82%; font-weight: 700; font-size: 1.12rem; line-height: 1.15; }
+.ex-med { font-family: var(--f-mono); font-size: 0.74rem; line-height: 1.5; color: var(--lead); }
+.ex-look { font-size: 0.95rem; line-height: 1.5; }
+.ex-go { margin-top: auto; padding-top: 0.4rem; font-family: var(--f-mono); font-size: 0.74rem; color: var(--accent); letter-spacing: 0.03em; }
+.note { font-size: 0.92rem; color: var(--lead); }
+
+/* ---------- figures ---------- */
+figure { margin: 0; border: 1px solid var(--rule); background: var(--surface); display: flex; flex-direction: column; }
+figure canvas { display: block; width: 100%; }
+.fig-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.9rem; }
+figcaption { padding: 0.75rem 1rem; border-top: 1px solid var(--rule); font-size: 0.9rem; color: var(--lead); }
+.controls { display: flex; flex-wrap: wrap; gap: 0.8rem 1.4rem; align-items: end; }
+.ctl { display: flex; flex-direction: column; gap: 0.2rem; min-width: 8.5rem; flex: 1 1 8.5rem; }
+.ctl label { font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--lead); display: flex; justify-content: space-between; gap: 0.5rem; }
+.ctl output { color: var(--ink); font-variant-numeric: tabular-nums; }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+.row-cap { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--lead); }
+
+.hero-field { border-block: 1px solid var(--ink); background: var(--surface); position: relative; }
+.hero-field canvas { display: block; width: 100%; height: 190px; }
+.hero-field .btn { position: absolute; right: 0.6rem; bottom: 0.6rem; background: var(--surface); }
+
+pre {
+  margin: 0; background: var(--surface); border: 1px solid var(--rule); padding: 1rem;
+  overflow-x: auto; font-family: var(--f-mono); font-size: 0.8rem; line-height: 1.55; color: var(--ink);
+}
+.code-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+
+/* ---------- controls ---------- */
+.btn {
+  font-family: var(--f-mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid var(--ink); background: transparent; color: var(--ink);
+  padding: 0.5rem 0.85rem; cursor: pointer; line-height: 1.2;
+}
+.btn:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); }
+.btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.done-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; padding-top: 1.2rem; border-top: 1px solid var(--rule); }
+
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pager a {
+  display: flex; flex-direction: column; gap: 0.2rem; padding: 0.9rem 0; text-decoration: none; color: var(--ink);
+  border-top: 2px solid var(--ink); min-width: 0;
+}
+.pager a.next { text-align: right; }
+.pager .pg-title { font-family: var(--f-display); font-stretch: 80%; font-weight: 700; font-size: 1.1rem; line-height: 1.2; }
+.pager a:hover .pg-title { color: var(--accent); }
+
+/* checklist */
+.checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; max-width: 40rem; }
+.checklist label { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr); gap: 0.5rem; align-items: start; cursor: pointer; }
+.checklist input { accent-color: var(--accent); width: 1.05rem; height: 1.05rem; margin-top: 0.3rem; }
+
+/* rubric scorer */
+.seg { display: inline-flex; border: 1px solid var(--ink); }
+.seg input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.seg label {
+  font-family: var(--f-mono); font-size: 0.8rem; padding: 0.3rem 0.65rem; cursor: pointer;
+  border-left: 1px solid var(--ink); font-variant-numeric: tabular-nums;
+}
+.seg label:first-of-type { border-left: 0; }
+.seg input:checked + label { background: var(--ink); color: var(--paper); }
+.seg input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+.score-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem 1.4rem; }
+.score-total { font-family: var(--f-display); font-stretch: 66%; font-weight: 850; font-size: 3.4rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.verdict { font-size: 1.02rem; }
+.verdict.pass { color: var(--accent); }
+.verdict.redo { color: var(--sepia); }
+
+/* swatches */
+.swatches { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.swatch { display: flex; flex-direction: column; gap: 0.35rem; width: 6.2rem; }
+.swatch span:first-child { display: block; height: 3.2rem; border: 1px solid var(--rule); }
+
+/* ---------- phone ---------- */
+@media (max-width: 880px) {
+  .app { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6;
+    background: var(--paper); border-bottom: 1px solid var(--ink); padding-block: 0.7rem;
+  }
+  .topbar .brand-title { font-size: 1.2rem; }
+  .nav { display: none; position: static; max-height: none; padding-block: 1.2rem 1.6rem; border-bottom: 1px solid var(--rule); }
+  .nav.open { display: flex; }
+  .nav .brand { display: none; }
+  .sheet { padding-block: 1.8rem 4rem; gap: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <a class="brand-title" href="#overview">Drawing like Lebbeus Woods</a>
+    <button class="btn" id="navToggle" aria-expanded="false" aria-controls="nav">Contents</button>
+  </header>
+  <nav class="nav" id="nav" aria-label="Course contents"></nav>
+  <main class="sheet" id="view" tabindex="-1"></main>
+</div>
+
+<script>
+/* ============================================================
+   Course content. Facts carry their source on the Sources sheet.
+   ============================================================ */
+
+const MODULES = [
+  {
+    id: 'm1', n: 1, part: 1, week: '1', title: 'Line as vector',
+    idea: 'Every line is a force with direction and magnitude. In 2011 he wrote that a straight line carries both, and that any curve can be built from straight lines. This week, make three directions read as three different forces.',
+    trains: ['Line as vector', 'Non-Euclidean form'],
+    drills: [
+      'Fill an 18x24 sheet with straight lines in three dominant directions, straightedge only. Vary pressure so each direction reads as its own force.',
+      'Draw a weight ladder: ten parallel lines from barely visible to fully loaded, same pencil. Repeat until the steps are even.',
+      'Build a hyperbolic paraboloid from 40+ straight lines spanning two skewed edges, then a twisted band. The figure below is the construction to copy by hand.'
+    ],
+    figure: 'ruled',
+    output: 'Six sheets.',
+    test: 'Mask everything but one direction of lines. Can you still tell it from the other two by weight and spacing alone?',
+    examples: [
+      { title: 'Untitled (Einstein Tomb)', year: '1980', where: 'SFMOMA', med: 'Ink on board, 14 5/8 x 23 in.', url: 'https://www.sfmoma.org/artwork/2019.291/',
+        look: 'Ink gives no erasing and no smudged tone. How do weight and spacing alone separate near from far?' },
+      { title: 'Sketch for Einstein Tomb', year: '1980', where: 'SFMOMA', med: 'Sketch for Pamphlet Architecture 6', url: 'https://www.sfmoma.org/artwork/2019.142/',
+        look: 'Set it beside the finished ink sheet. Which lines survived into the final, and which were search lines?' }
+    ]
+  },
+  {
+    id: 'm2', n: 2, part: 1, week: '2', title: 'Tone by accumulation',
+    idea: 'Value comes from line density, never from smudging. A Brooklyn Rail critic noted that his detail can pass for an engraving.',
+    trains: ['Engraving-level detail', 'Fields, not objects'],
+    drills: [
+      'Make a nine-step value scale from parallel hatching only. Then make it again with crosshatching at acute angles, 15 to 30 degrees apart.',
+      'Draw a real machine part at 2x scale: a carburetor, a vise, a pump housing. All value comes from hatching.',
+      'Layer it: graphite base, colored pencil over, then burnish two or three planes so they read as metal.'
+    ],
+    figure: 'hatch',
+    output: 'Both value scales and one finished machine study.',
+    test: 'Pin it up and step back 2 m. Does the study read as a print?',
+    examples: [
+      { title: 'Photon Kite, from Centricity', year: '1988', where: 'SFMOMA', med: 'Graphite on paper, 24 x 22 in.', url: 'https://www.sfmoma.org/artwork/2001.156/',
+        look: 'The drawing the Brooklyn Rail critic mistook for an engraving, in graphite alone. Up close, is the dark built from crossed lines, from pressure, or both?' },
+      { title: 'Centricity Series, Upper Chamber, Neomechanical Tower', year: '1987', where: 'SFMOMA', med: 'Pencil on paper, 30 1/4 x 29 in.', url: 'https://www.sfmoma.org/artwork/2019.4/',
+        look: 'An interior in pencil only. Where is the lightest value on the sheet, and is it bare paper or lifted out?' }
+    ]
+  },
+  {
+    id: 'm3', n: 3, part: 1, week: '3', title: 'The ground',
+    idea: 'Start from a mid-tone so you can work darker and lighter at once. Urban Realm describes his technique as a rubbed colored-chalk ground with fine colored pencil over it.',
+    trains: ['Layered media'],
+    drills: [
+      'Optional first layer: a thin sepia wash, dried flat.',
+      'Shave chalk or pastel onto the sheet and rub it in with a cotton pad in broad directional strokes.',
+      'Fix lightly.',
+      'Lift lights with the kneaded and electric erasers. Use the erasing shield for hard edges.',
+      'Fine colored pencil for edges and structure, graphite for the darks.'
+    ],
+    output: 'Three grounds (warm, cool, mixed), then one tower growing out of a landscape on the best of them.',
+    test: 'Squint at the sheet. Do you see three distinct values, or one muddy middle?',
+    examples: [
+      { title: 'Untitled, from Centricity', year: '1987', where: 'Cooper Hewitt', med: 'Graphite, color pencil, pastel on Strathmore paper, 61 x 58.2 cm', url: 'https://collection.cooperhewitt.org/objects/18668979/',
+        look: 'Three media on one sheet. Try to separate what the pastel does from what the pencil does.' },
+      { title: 'Geomechanical Tower, from Centricity', year: '1987', where: 'Cooper Hewitt', med: 'Color pencil on Strathmore paper, 51 x 50.8 cm', url: 'https://collection.cooperhewitt.org/objects/18668977/',
+        look: 'The museum\'s color readout for this sheet is on the Kit page. Check it against the drawing, then mix your first ground from it.' }
+    ]
+  },
+  {
+    id: 'm4', n: 4, part: 2, week: '4', title: 'Machine towers',
+    idea: 'Treat a building as an instrument. In Centricity his towers seem to grow from the landscape and read closer to machines than buildings. In a 1988 interview he said he was after double and triple curvature, beyond Euclidean form.',
+    trains: ['Non-Euclidean form', 'Series plus text'],
+    drills: [
+      'Invent one structure that measures or harvests something real: wind, seismic motion, light, water.',
+      'Draw a series of six: plan, section, elevation, axonometric, perspective, and one detail at 1:5.',
+      'Put compound curvature somewhere, built only from straight lines (Module 1).'
+    ],
+    output: 'Six views of one structure, plus half a page on what it measures and who operates it.',
+    test: 'Could someone build a model from your six views without asking you a single question?',
+    examples: [
+      { title: 'Lebbeus Woods: Early Drawings', year: '1986-88', where: 'Dezeen', med: 'Centricity and A-City sheets, shown at Friedman Benda, 2012', url: 'https://www.dezeen.com/2012/11/08/lebbeus-woods-early-drawings/amp/',
+        look: 'Several Centricity towers on one page, with his 1988 interview quotes. Pick one tower and write down what you think it measures.' },
+      { title: 'A-City and 4 Cities and Beyond', year: 'ca. 1982-97', where: 'Getty Research Institute', med: '52 drawings; pen and ink and colored pencil', url: 'https://www.getty.edu/research/special_collections/notable/lebbeus_woods.html',
+        look: 'The Getty calls this a conceptual masterplan for an alternate world. Notice how a series of single sheets adds up to a city.' }
+    ]
+  },
+  {
+    id: 'm5', n: 5, part: 2, week: '5', title: 'Insertion',
+    idea: 'New space goes into old fabric. His Berlin Free Zone (1990-91) imagined spaces that burrow under the city and occupy existing buildings.',
+    trains: ['Architecture under pressure', 'Fields, not objects'],
+    drills: [
+      'Photograph a real building near you. Trace it precisely in hard graphite.',
+      'Insert a structure that occupies it from inside or below.',
+      'Rule: the existing building stays calm and exact; the insertion is dense and charged.'
+    ],
+    output: 'Four drawings: existing, insertion, a section through both, and the interior of the new space.',
+    test: 'Cover the insertion with your hand. Does the existing building still read as calm and exact?',
+    examples: [
+      { title: 'Underground Berlin 19, Elevation View', year: '1988', where: 'SFMOMA', med: 'Graphite and pastel on paper, 12 1/2 x 20 1/4 in.', url: 'https://www.sfmoma.org/artwork/2018.13/',
+        look: 'An elevation of a world below grade. Where does the existing ground end and the new structure begin?' },
+      { title: 'Underground Berlin drawings', year: '1988', where: 'M+, Hong Kong', med: 'Commissioned for an exhibition on Berlin\'s future', url: 'https://mplus.org.hk/en/collection/objects/drawings-underground-berlin-2016831',
+        look: 'Made a year before the Wall fell, activating an old rail tunnel that crossed under the border. Read how he treats drawing as research, equal to building.' },
+      { title: 'Aerial view, Berlin Free Zone', year: '1990', where: 'Getty Research Institute', med: 'Electrostatic print, colored pencil, pastel and ink on paper', url: 'https://www.getty.edu/research/exhibitions_events/exhibitions/irresistible_decay/loss/woods_aerial.html',
+        look: 'An abandoned shell near the Wall, drawn torn open with new structure inside. This is the Module 5 move.' }
+    ]
+  },
+  {
+    id: 'm6', n: 6, part: 2, week: '6', title: 'Freespace and heterarchy',
+    idea: 'For the Zagreb Free Zone (1991) he set criteria for a freespace: no use decided in advance, no readable order, no fixed meaning. Hierarchy gives way to heterarchy, a network with no top.',
+    trains: ['Invented vocabulary'],
+    drills: [
+      'Draw a room nobody can name. No furniture, no stair implying a route, no scale figures.',
+      'Draw a network of five such spaces with no center.',
+      'Write one page: why it has no program, and who might claim it.'
+    ],
+    output: 'One freespace, one network drawing, one page of text.',
+    test: 'Show it to someone. If they name a use, redraw.',
+    examples: [
+      { title: 'Zagreb Free Zone', year: '1991', where: 'NY Art Beat', med: 'With Leo Modrcin; drawings, model and ephemera, re-shown at ROOM EAST in 2016', url: 'https://www.nyartbeat.com/event/2016/AA25',
+        look: 'His freespace criteria in his own project text. Check your room against each criterion, one by one.' },
+      { title: 'Into the Woods', year: '2005', where: 'Domus', med: 'Michael Sorkin essay, with a Berlin Free Zone communications heterarchy sketch', url: 'https://www.domusweb.it/en/from-the-archive/2012/11/02/into-the-woods.html',
+        look: 'Find the heterarchy sketch and compare it with your network drawing. Where, if anywhere, is the center?' }
+    ]
+  },
+  {
+    id: 'm7', n: 7, part: 2, week: '7', title: 'Injection, scab, scar',
+    idea: 'In War and Architecture (1993) he rejected both rebuilding Sarajevo exactly as it was and erasing it for a new utopia, calling them two forms of denial. He proposed a healing sequence instead: injection, scab, scar, new tissue.',
+    trains: ['Architecture under pressure', 'Invented vocabulary'],
+    drills: [
+      'Pick a damaged structure: a burned building, abandoned mine works, a collapsed barn.',
+      'Draw four sheets, one per stage: injection, scab, scar, new tissue.',
+      'Keep the damage visible in every sheet.'
+    ],
+    output: 'Four sheets, one per stage.',
+    test: 'Lay the four in order. Is the damage still legible in the last one?',
+    extra: 'He entered Sarajevo during the siege to make this work. Treat real ruins with that seriousness.',
+    examples: [
+      { title: 'Untitled, from War and Architecture', year: '1993', where: 'Whitney Museum', med: 'Colored pencil and pastel on board, 12 x 19 15/16 in.', url: 'https://whitney.org/collection/works/17617',
+        look: 'The museum describes hundreds of metallic shards swirling on a diagonal. Watch how direction alone carries violence.' },
+      { title: 'War and Architecture, Pamphlet Architecture 15', year: '1993', where: 'CCA library record', med: 'Bilingual English and Serbo-Croatian, 40 pages', url: 'https://cca.qc.ca/en/search/details/library/publication/28928504',
+        look: 'Addressed to the citizens of Sarajevo. Read it before you draw a single scar.' }
+    ]
+  },
+  {
+    id: 'm8', n: 8, part: 3, week: '8', title: 'Terrain and copy generations',
+    idea: 'Iterate through copies. MoMA\'s Terrain sheets (1999) list photocopy, felt-tip marker, ink, colored pencil, graphite, pasted printed paper and sanding, mounted to board.',
+    trains: ['Fields, not objects', 'Layered media', 'Architecture under pressure'],
+    drills: [
+      'Draw a dense line field of a landscape section in marker.',
+      'Copy it.',
+      'Draw into the copy with colored pencil and graphite. Sand some areas back.',
+      'Collage in fragments of earlier copies.',
+      'Copy again. Repeat to five generations.'
+    ],
+    drillNote: 'This order is my reconstruction. His exact sequence isn\'t documented.',
+    output: 'Five generations of one drawing, pinned in order. Site: a fault-bounded landscape; the Eastern Sierra works.',
+    test: 'Line the five up. Does each generation add an idea, or only more marks?',
+    examples: [
+      { title: 'Terrain, project', year: '1999', where: 'MoMA', med: 'Photocopy with felt-tipped marker, colored pencil and graphite on paper with sanding, mounted to board, 19 3/8 x 23 3/8 in.', url: 'https://www.moma.org/collection/works/88851',
+        look: 'A photocopy is the base. Where does the copy end and the hand begin, and where did sanding take marks away?' },
+      { title: 'Terrain, project (collage)', year: '1999', where: 'MoMA', med: 'Adds ink and cut-and-pasted printed paper', url: 'https://www.moma.org/collection/works/88849',
+        look: 'The collage variant. Can you find the pasted fragments without reading the label first?' },
+      { title: 'Slip House 2, from San Francisco: Inhabiting the Quake', year: '1995', where: 'SFMOMA', med: 'Graphite, pastel and piano wire on paper, 3/4 in. deep', url: 'https://www.sfmoma.org/artwork/2013.2/',
+        look: 'Piano wire on paper: the drawing leaves the flat sheet. Consider one wire element for your capstone.' },
+      { title: 'Fault House 2, from San Francisco: Inhabiting the Quake', year: '1995', where: 'SFMOMA', med: 'Graphite, pastel and piano wire on paper', url: 'https://www.sfmoma.org/artwork/2013.1/',
+        look: 'The companion sheet. Compare how each house answers a different kind of ground movement in its name.' }
+    ]
+  },
+  {
+    id: 'm9', n: 9, part: 3, week: '9', title: 'Digital armature', optional: true,
+    idea: 'Use the computer for the skeleton only. In 2011 he argued that a screen strips out the tactile range of hand marks, so every final mark here goes on by hand.',
+    trains: ['Line as vector'],
+    drills: [
+      'Generate a line field or ruled surfaces in Rhino or Grasshopper. The script below does it; the figure is a browser preview of the same logic.',
+      'Make2D, then print full size on drawing paper at 10 to 20 percent grey.',
+      'Draw over it by hand until the print disappears.'
+    ],
+    figure: 'field',
+    code: true,
+    output: 'Two drawings. Pin them beside a Module 4 sheet and decide whether the armature helped or flattened the work.',
+    test: 'Can a viewer find the printed line anywhere? If yes, keep drawing.',
+    examples: [
+      { title: 'Light Pavilion, Chengdu', year: '2012', where: 'Dezeen', med: 'With Christoph a. Kumpusch, in Steven Holl\'s Sliced Porosity Block', url: 'https://www.dezeen.com/2013/01/19/light-pavilion-by-lebbeus-woods-at-sliced-porosity-block/amp/',
+        look: 'His only permanent built work: steel columns in polycarbonate lit from within, between mirror-finish steel panels. Straight lines built as light.' },
+      { title: 'Earthwave', year: '1997 / 2013', where: 'ArchDaily', med: 'Designed with Kumpusch and Adam Orlinski; 18 x 18 ft steel, built by SCI-Arc', url: 'https://www.archdaily.com/379351/lebbeus-woods-is-an-archetype-exhibition-and-installation',
+        look: 'An "inhabitable drawing" based on a 1997 sheet, built at full size after his death. Ask what a drawing has to specify to survive that translation.' },
+      { title: 'System Wien', year: '2005', where: 'MAK Vienna', med: 'Exhibition with Christoph a. Kumpusch', url: 'https://www.mak.at/en/program/exhibitions/lebbeus_woods',
+        look: 'Part of his early-2000s turn from drawings toward constructed fields and installations. The drawn line moves into space.' }
+    ]
+  },
+  {
+    id: 'm10', n: 10, part: 3, week: '10', title: 'Constrained means',
+    idea: 'Strip the means to a minimum. His Conflict Space drawings (2011) used fine linen primed very dark grey, an opaque water-based white crayon sharpened to a point, and straight lines only. Most were 74 x 120 in.',
+    trains: ['Constraint as method', 'Line as vector'],
+    drills: [
+      'Prime a 24x36 in board or canvas very dark grey, matte.',
+      'White crayon and straightedge only. No curves, no erasing, no tone except line density.',
+      'Aim for overlapping, interpenetrating 3D figures in a space that is ambiguous and precise at once.',
+      'Have a wall? Tape up canvas and work standing, at the scale of a room.'
+    ],
+    output: 'One white-on-black drawing, 24x36 in or larger.',
+    test: 'Ambiguous and precise at once was his stated aim. Is yours both, or only one?',
+    extra: 'He admitted white lines on black read flat by habit, and bet that a confident line would assert edge anyway. Find out if your lines win that bet.',
+    examples: [
+      { title: 'The Dreams That Stuff Is Made Of', year: '2011', where: 'Lebbeus Woods blog', med: 'His own account of the Conflict Space drawings, with detail photos', url: 'https://lebbeuswoods.wordpress.com/2011/01/04/the-dreams-that-stuff-is-made-of/',
+        look: 'Read his account first. Then study the detail photos for how line density makes depth without any tone.' },
+      { title: 'An assertion of edge and boundary', year: '2011', where: 'BLDGBLOG', med: 'Geoff Manaugh on the same series', url: 'https://bldgblog.com/2011/01/an-assertion-of-edge-and-boundary/',
+        look: 'Shows a corner of his drawing room with the series installed. Note the scale against the room.' }
+    ]
+  }
+];
+
+const PARTS = {
+  1: { name: 'Hand', weeks: '1-3', lead: 'Rebuild your mark-making before any ideas enter. Perspective is not the bottleneck; line control is.' },
+  2: { name: 'Idea', weeks: '4-7', lead: 'Each module is built on one of his concepts. Technique now serves a position.' },
+  3: { name: 'Process and scale', weeks: '8-10', lead: 'How a drawing gets made, iterated and enlarged.' }
+};
+
+const TRAITS = [
+  ['Fields, not objects', 'MoMA: dense, dark accumulations of acute-angled lines filling the whole page (Terrain, 1999)', ['m1', 'm8']],
+  ['Line as vector', 'His 2011 post: a straight line carries direction and magnitude of energy; curves come from many straight lines', ['m1', 'm10']],
+  ['Layered media', 'Rubbed colored-chalk ground under fine colored pencil; Centricity sheets mix graphite, ink, colored pencil and sepia wash', ['m3']],
+  ['Engraving-level detail', 'Brooklyn Rail: Photon Kite (1988) can pass for an engraving', ['m2']],
+  ['Non-Euclidean form', '1988 interview: double and triple curvature, hyperbolic and compound geometry', ['m1', 'm4']],
+  ['Series plus text', 'One idea worked across many sheets, with an essay alongside', []],
+  ['Architecture under pressure', 'War in Sarajevo, embargo in Havana, earthquake in San Francisco (Radical Reconstruction, 1997)', ['m7', 'm8']],
+  ['Invented vocabulary', 'Freespace, heterarchy, injection, scab, scar, new tissue', ['m6', 'm7']],
+  ['Constraint as method', 'Conflict Space (2011): white crayon, straight lines only, dark ground', ['m10']]
+];
+
+const KIT = [
+  ['Strathmore drawing paper, 18x24 in pad + 24x24 in sheets', 'Main surface', 'Cooper Hewitt lists Strathmore for two Centricity sheets; series and size are my pick'],
+  ['Graphite 2H-6B, 0.3 mm mechanical pencil', 'Structure, darks', 'Graphite documented; grades my pick'],
+  ['Colored pencils: wax-based (Prismacolor Premier) + oil-based (Faber-Castell Polychromos)', 'Layered color, burnishing', 'Colored pencil documented; brands my pick'],
+  ['Soft pastel or colored chalk, earth tones and greys', 'Rubbed ground', 'Documented (chalk ground; pastel on Centricity and Quake sheets)'],
+  ['Cotton pads, chamois, blending stumps', 'Spreading the ground', 'My pick'],
+  ['Kneaded eraser, electric eraser, erasing shield', 'Lifting lights out of the ground', 'My pick'],
+  ['Sandpaper 220-400 grit, or a sanding block', 'Abrading the surface', 'Sanding documented on Terrain sheets; grit my pick'],
+  ['Black fine liners and felt-tip markers', 'Line fields, copy work', 'Documented (Terrain)'],
+  ['Black ink, sepia watercolor', 'Washes, ink line', 'Documented (Centricity, Einstein Tomb)'],
+  ['Laser printer or copier, cut-and-paste supplies', 'Copy generations, collage', 'Documented (Terrain)'],
+  ['Piano wire, 0.5-1 mm, and fine pliers', 'Relief elements on paper', 'Piano wire documented (Quake City sheets); gauge my pick'],
+  ['Cork-backed steel straightedge, 36 in', 'Straight lines on any surface', 'He used a purpose-made straightedge on vertical canvas; this item is my pick'],
+  ['Fine linen canvas or heavy board, very dark grey matte acrylic', 'Module 10 ground', 'Documented (Conflict Space)'],
+  ['Opaque water-based white crayon you can sharpen', 'Module 10 line', 'Type documented; Caran d\'Ache Neocolor II white is my guess, unverified'],
+  ['Workable fixative', 'Between layers', 'My pick'],
+  ['Small notebook, landscape format', 'Daily thumbnails', 'His later sketchbooks were small and landscape']
+];
+
+const SWATCHES = [['rosybrown', '#BC8F8F'], ['wheat', '#F5DEB3'], ['dimgrey', '#696969'], ['grey', '#808080'], ['darkslategrey', '#2F4F4F']];
+
+const RUBRIC = [
+  ['Idea', 'Can you state what the series tests in one sentence?'],
+  ['Vector', 'Does every line carry direction and force, or is some of it filler?'],
+  ['Field', 'Is the whole sheet working, or are there dead zones?'],
+  ['Ambiguous and precise', 'Is the space hard to read yet exact at its edges?'],
+  ['Density', 'Are the darks built from lines, not smears?'],
+  ['Series', 'Does each sheet push the idea, not just change the view?'],
+  ['Text', 'Does the writing add a layer the drawings can\'t carry?'],
+  ['Not a costume', 'Would it hold up for someone who has never heard of Woods?']
+];
+
+const CAPSTONE_ITEMS = [
+  'At least three media systems from the course (rubbed ground + pencil, copy generations, white on black, digital armature)',
+  'One drawing at least 36 in on its long side',
+  'One freespace with no program',
+  'One sheet that keeps the damage visible, per Module 7',
+  'An essay that argues, not describes',
+  'Full pin-up scored with the rubric, then a 300-word self-critique'
+];
+
+const READING = [
+  ['The Dreams That Stuff Is Made Of (blog post)', '2011', 'His own account of drawing Conflict Space', ['m1', 'm10'], 'https://lebbeuswoods.wordpress.com/2011/01/04/the-dreams-that-stuff-is-made-of/'],
+  ['Lebbeus Woods blog', '2007-12', '300+ posts of drawings, theory and teaching', [], 'https://lebbeuswoods.wordpress.com/'],
+  ['Slow Manifesto: Lebbeus Woods Blog', '2015', 'The best posts in print', [], 'https://cca.qc.ca/en/search/details/library/publication/903363551'],
+  ['Einstein Tomb, Pamphlet Architecture 6', '1980', 'Early ink technique', ['m1'], 'https://www.sfmoma.org/artwork/2019.291/'],
+  ['OneFiveFour', '1989', 'Late-1980s projects', [], ''],
+  ['Anarchitecture: Architecture Is a Political Act', '1992', 'The political frame', [], ''],
+  ['Terra Nova (MIT List catalog)', '1992', 'Heterarchy as an organizing idea', ['m6'], 'https://listart.mit.edu/node/72'],
+  ['War and Architecture, Pamphlet Architecture 15', '1993', 'Injection, scab, scar', ['m7'], 'https://cca.qc.ca/en/search/details/library/publication/28928504'],
+  ['Radical Reconstruction', '1997', 'Sarajevo, Havana, San Francisco', ['m7', 'm8'], 'https://www.cca.qc.ca/en/search/details/library/publication/36458176'],
+  ['Lebbeus Woods, Architect (Drawing Center catalog)', '2014', 'The retrospective', [], ''],
+  ['Exquisite Experiments, Early Years (AD issue)', '2024', 'His early notebooks', [], 'https://world-architects.com/en/architecture-news/found/browsing-the-black-notebooks'],
+  ['Without Walls (BLDGBLOG interview)', '2007', 'Him talking through the work', [], 'https://bldgblog.blogspot.com/2007/10/without-walls-interview-with-lebbeus.html']
+];
+
+const SOURCES = [
+  ['Lebbeus Woods, "The Dreams That Stuff Is Made Of" (2011)', 'https://lebbeuswoods.wordpress.com/2011/01/04/the-dreams-that-stuff-is-made-of/'],
+  ['SFMOMA, Lebbeus Woods artist page', 'https://www.sfmoma.org/artist/Lebbeus_Woods/?sa=1'],
+  ['SFMOMA, Photon Kite (1988)', 'https://www.sfmoma.org/artwork/2001.156/'],
+  ['SFMOMA, Upper Chamber, Neomechanical Tower (1987)', 'https://www.sfmoma.org/artwork/2019.4/'],
+  ['SFMOMA, Untitled (Einstein Tomb) (1980)', 'https://www.sfmoma.org/artwork/2019.291/'],
+  ['SFMOMA, Underground Berlin 19 (1988)', 'https://www.sfmoma.org/artwork/2018.13/'],
+  ['SFMOMA, Slip House 2 (1995)', 'https://www.sfmoma.org/artwork/2013.2/'],
+  ['SFMOMA, Fault House 2 (1995)', 'https://www.sfmoma.org/artwork/2013.1/'],
+  ['SFMOMA, Sketchbook 1995-98', 'https://www.sfmoma.org/artwork/2001.153.C/'],
+  ['MoMA, Terrain, project (1999)', 'https://www.moma.org/collection/works/88851'],
+  ['MoMA, Terrain, project, collage variant (1999)', 'https://www.moma.org/collection/works/88849'],
+  ['Cooper Hewitt, Geomechanical Tower (1987)', 'https://collection.cooperhewitt.org/objects/18668977/'],
+  ['Cooper Hewitt, Untitled, Centricity (1987)', 'https://collection.cooperhewitt.org/objects/18668979/'],
+  ['Whitney, Untitled, War and Architecture (1993)', 'https://whitney.org/collection/works/17617'],
+  ['Getty, Aerial view, Berlin Free Zone (1990)', 'https://www.getty.edu/research/exhibitions_events/exhibitions/irresistible_decay/loss/woods_aerial.html'],
+  ['Getty Research Institute, Woods collections', 'https://www.getty.edu/research/special_collections/notable/lebbeus_woods.html'],
+  ['M+, Underground Berlin drawings (1988)', 'https://mplus.org.hk/en/collection/objects/drawings-underground-berlin-2016831'],
+  ['MAK, Lebbeus Woods: System Wien (2005)', 'https://www.mak.at/en/program/exhibitions/lebbeus_woods'],
+  ['Urban Realm, "Lebbeus Woods: an appreciation" (2012)', 'https://www.urbanrealm.com/opinion/2012/11/28/lebbeus-woods-an-appreciation/'],
+  ['Architexturez, Drawing Center review', 'https://architexturez.net/node/165528'],
+  ['Brooklyn Rail, Lebbeus Woods, Architect (2014)', 'https://brooklynrail.org/2014/06/artseen/lebbeus-woods/'],
+  ['Dezeen, Lebbeus Woods: Early Drawings (2012)', 'https://www.dezeen.com/2012/11/08/lebbeus-woods-early-drawings/amp/'],
+  ['Dezeen, Light Pavilion (2013)', 'https://www.dezeen.com/2013/01/19/light-pavilion-by-lebbeus-woods-at-sliced-porosity-block/amp/'],
+  ['Architectural Record, Light Pavilion snapshot', 'https://architecturalrecord.com/articles/6629-snapshot-light-pavilion'],
+  ['Architectural Record, "Ever the Visionary, Lebbeus Woods Gets Real"', 'https://architecturalrecord.com/articles/2511-ever-the-visionary-lebbeus-woods-gets-real'],
+  ['ArchDaily, Lebbeus Woods is an Archetype / Earthwave (2013)', 'https://www.archdaily.com/379351/lebbeus-woods-is-an-archetype-exhibition-and-installation'],
+  ['Domus, "Into the Woods"', 'https://www.domusweb.it/en/from-the-archive/2012/11/02/into-the-woods.html'],
+  ['NY Art Beat, Zagreb Free Zone (2016)', 'https://www.nyartbeat.com/event/2016/AA25'],
+  ['CCA, War and Architecture', 'https://cca.qc.ca/en/search/details/library/publication/28928504'],
+  ['CCA, Radical Reconstruction', 'https://www.cca.qc.ca/en/search/details/library/publication/36458176'],
+  ['Hyperallergic, "Remembering Radical, Theoretical Architect Lebbeus Woods"', 'https://hyperallergic.com/remembering-radical-theoretical-architect-lebbeus-woods/'],
+  ['Metalocus, Lebbeus Woods: Line', 'https://www.metalocus.es/en/news/lebbeus-woods-line'],
+  ['World-Architects, "Browsing the Black Notebooks" (2024)', 'https://world-architects.com/en/architecture-news/found/browsing-the-black-notebooks'],
+  ['Wikipedia, Lebbeus Woods', 'https://en.wikipedia.org/wiki/Lebbeus_Woods']
+];
+
+const RHINO_SCRIPT = `# Rhino 8 ScriptEditor (Python 3): acute-angle line field for a printed underlay.
+# Lines cluster around a few dominant directions; most are short, a few run long.
+import math
+import random
+import rhinoscriptsyntax as rs
+
+N = 600               # number of lines
+W, H = 600, 450       # field size in model units (24x18 in at 25 units/in)
+DIRS = [12, 31, 147]  # dominant directions, degrees
+JITTER = 6            # +/- degrees around each direction
+random.seed(7)        # change for a new field
+
+rs.EnableRedraw(False)
+for _ in range(N):
+    a = math.radians(random.choice(DIRS) + random.uniform(-JITTER, JITTER))
+    length = random.triangular(10, 400, 40)  # (low, high, mode): mostly short vectors
+    x, y = random.uniform(0, W), random.uniform(0, H)
+    dx, dy = math.cos(a) * length / 2, math.sin(a) * length / 2
+    rs.AddLine((x - dx, y - dy, 0), (x + dx, y + dy, 0))
+rs.EnableRedraw(True)
+# Lines can overrun the frame: trim to a rectangle or let the print edge crop them.`;
+
+/* ============================================================
+   Routing: one view per bare #token, so each sheet is linkable.
+   ============================================================ */
+const ROUTES = [
+  { id: 'overview', code: 'A-00', title: 'Overview', group: 'Start' },
+  { id: 'kit', code: 'A-01', title: 'Kit', group: 'Start' },
+  { id: 'rhythm', code: 'A-02', title: 'Rhythm', group: 'Start' },
+  ...MODULES.map(m => ({ id: m.id, code: 'M-' + String(m.n).padStart(2, '0'), title: m.title, group: 'Part ' + m.part, wk: 'wk ' + m.week, module: true })),
+  { id: 'capstone', code: 'C-01', title: 'Capstone', group: 'Finish', wk: 'wk 11-12' },
+  { id: 'rubric', code: 'C-02', title: 'Rubric', group: 'Finish' },
+  { id: 'reading', code: 'R-01', title: 'Reading list', group: 'Finish' },
+  { id: 'sources', code: 'R-02', title: 'Sources', group: 'Finish' }
+];
+const routeById = Object.fromEntries(ROUTES.map(r => [r.id, r]));
+const modById = Object.fromEntries(MODULES.map(m => [m.id, m]));
+
+/* ---------- per-viewer storage (convenience only; page works without it) ---------- */
+const store = {
+  get(key, fallback) {
+    try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* storage blocked: keep in memory */ }
+  }
+};
+let done = store.get('lw-done', {});
+let capChecks = store.get('lw-capstone', {});
+let scores = store.get('lw-rubric', {});
+
+/* ---------- helpers ---------- */
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const modLinks = ids => ids.length
+  ? ids.map(id => `<a href="#${id}">${modById[id].n}</a>`).join(', ')
+  : '<span class="mono">all</span>';
+
+function exampleCards(list) {
+  return `<div class="ex-grid">${list.map(ex => `
+    <a class="ex" href="${esc(ex.url)}" target="_blank" rel="noopener">
+      <div class="ex-head"><span class="label">${esc(ex.where)}</span><span class="label">${esc(ex.year)}</span></div>
+      <div class="ex-title">${esc(ex.title)}</div>
+      <div class="ex-med">${esc(ex.med)}</div>
+      <p class="ex-look">${esc(ex.look)}</p>
+      <span class="ex-go">Open at ${esc(ex.where)} &#8599;</span>
+    </a>`).join('')}</div>`;
+}
+
+function pager(id) {
+  const i = ROUTES.findIndex(r => r.id === id);
+  const prev = ROUTES[i - 1], next = ROUTES[i + 1];
+  const cell = (r, cls, dir) => r
+    ? `<a class="${cls}" href="#${r.id}"><span class="label">${dir} &middot; ${r.code}</span><span class="pg-title">${esc(r.title)}</span></a>`
+    : '<span></span>';
+  return `<nav class="pager" aria-label="Previous and next sheet">${cell(prev, 'prev', 'Previous')}${cell(next, 'next', 'Next')}</nav>`;
+}
+
+/* ============================================================
+   Views
+   ============================================================ */
+function viewOverview() {
+  const rows = MODULES.map(m => `
+    <tr class="rowlink" data-go="${m.id}">
+      <td class="num mono">${m.week}</td>
+      <td><a href="#${m.id}">${esc(m.title)}</a>${m.optional ? ' <span class="label">optional</span>' : ''}</td>
+      <td>${esc(m.output.split('. Site')[0])}</td>
+    </tr>`).join('');
+  const traits = TRAITS.map(t => `<tr><td>${esc(t[0])}</td><td>${esc(t[1])}</td><td class="num">${modLinks(t[2])}</td></tr>`).join('');
+  return `
+    <div class="titleblock">
+      <div class="meta-row"><span class="label">Sheet <b>A-00</b></span><span class="label">12 weeks</span><span class="label">10 modules + capstone</span></div>
+      <h1>Drawing like Lebbeus Woods</h1>
+      <p class="lede">A studio course in his method: one idea worked across a series, the line treated as a force, and constraint used as a tool. Three 75-minute sessions and one pin-up per week, about 4.5 hours.</p>
+    </div>
+    <div class="hero-field">
+      <canvas id="heroField" aria-label="A field of straight lines in three dominant directions, generated in the browser"></canvas>
+      <button class="btn" id="heroRegen" type="button">New field</button>
+    </div>
+    <section>
+      <h2>The one rule</h2>
+      <div class="callout">
+        <span class="label">Every module</span>
+        <p>Ends in a series of drawings on one idea plus a page of text. MoMA notes he often gave a whole series of drawings to developing a single idea, and Urban Realm notes each set came with a long essay.</p>
+      </div>
+    </section>
+    <section>
+      <h2>Schedule <span class="label">tap a row to open</span></h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th class="num">Week</th><th>Module</th><th>Output</th></tr></thead>
+        <tbody>${rows}
+          <tr class="rowlink" data-go="capstone"><td class="num mono">11-12</td><td><a href="#capstone">Capstone</a></td><td>8-12 drawings, 1,000-word essay, review</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+    <section>
+      <h2>Set expectations</h2>
+      <div class="prose">
+        <p>His hand took decades, going back to his years at Eero Saarinen and Associates in the 1960s. Twelve weeks gets you his method, not his surface.</p>
+        <blockquote>"I drew because I wanted to express ideas."</blockquote>
+        <span class="cite">Lebbeus Woods, Architectural Record, 2012</span>
+        <p>Copy the surface without an idea and you get a costume.</p>
+      </div>
+    </section>
+    <section>
+      <h2>What you are learning</h2>
+      <p>Nine traits, each traced to a source. The last column links the modules that train it.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Trait</th><th>What the record shows</th><th class="num">Modules</th></tr></thead>
+        <tbody>${traits}</tbody>
+      </table></div>
+    </section>
+    <p class="note">Nothing on this site reproduces his drawings. Every example links to the collection or publication that holds it.</p>
+    ${pager('overview')}`;
+}
+
+function viewKit() {
+  const rows = KIT.map(k => `<tr><td>${esc(k[0])}</td><td>${esc(k[1])}</td><td>${esc(k[2])}</td></tr>`).join('');
+  const sw = SWATCHES.map(s => `<div class="swatch"><span style="background:${s[1]}"></span><span class="label">${s[0]}</span></div>`).join('');
+  return `
+    <div class="titleblock">
+      <div class="meta-row"><span class="label">Sheet <b>A-01</b></span><span class="label">Before week 1</span></div>
+      <h1>Kit</h1>
+      <p class="lede">Museum records name his media but rarely brands. Where a brand or grade is my pick, the Basis column says so.</p>
+    </div>
+    <section>
+      <h2>Materials</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Item</th><th>Use</th><th>Basis</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+    </section>
+    <section>
+      <h2>Palette starting point</h2>
+      <p>Cooper Hewitt's automated color readout for Geomechanical Tower (1987) lists these five. Read them as a warm tan ground, cool greys and one slate dark.</p>
+      <div class="swatches">${sw}</div>
+    </section>
+    ${pager('kit')}`;
+}
+
+function viewRhythm() {
+  return `
+    <div class="titleblock">
+      <div class="meta-row"><span class="label">Sheet <b>A-02</b></span><span class="label">Every week</span></div>
+      <h1>Rhythm</h1>
+      <p class="lede">Same structure every session so starting costs nothing. Write the sheet's question in pencil at the top before the first mark.</p>
+    </div>
+    <section>
+      <h2>Each session <span class="label">75 min</span></h2>
+      <ol class="drills">
+        <li><span><b>10 min.</b> Warm-up: one straight-line field, straightedge only, no erasing.</span></li>
+        <li><span><b>50 min.</b> Module work.</span></li>
+        <li><span><b>10 min.</b> Notebook: three thumbnails of the next drawing, three sentences on the idea.</span></li>
+        <li><span><b>5 min.</b> Photograph the sheet in even light; file it by date and module.</span></li>
+      </ol>
+    </section>
+    <section>
+      <h2>Weekly pin-up <span class="label">45 min</span></h2>
+      <ol class="drills">
+        <li><span>Pin every sheet from the week, failures included.</span></li>
+        <li><span>Score the series with the <a href="#rubric">rubric</a>.</span></li>
+        <li><span>Pick the weakest sheet and redo it next session.</span></li>
+      </ol>
+    </section>
+    <div class="callout">
+      <span class="label">House rule</span>
+      <p>Friends recalled him saying he never sat down to draw for the sake of drawing. If a sheet has no question at the top, don't start it.</p>
+    </div>
+    <section>
+      <h2>Look at <span class="label">his notebooks</span></h2>
+      ${exampleCards([
+        { title: 'Sketchbook, 30 July 1995 to 23 May 1998', year: '1995-98', where: 'SFMOMA', med: 'Ink on paper', url: 'https://www.sfmoma.org/artwork/2001.153.C/',
+          look: 'SFMOMA holds several spreads from this one book. Compare how much is drawn versus written on each page.' },
+        { title: 'Browsing the Black Notebooks', year: '2024', where: 'World-Architects', med: 'On the AD issue Exquisite Experiments, Early Years', url: 'https://world-architects.com/en/architecture-news/found/browsing-the-black-notebooks',
+          look: 'His early notebooks, where text works alongside the image. Your 10-minute notebook slot is this habit.' }
+      ])}
+    </section>
+    ${pager('rhythm')}`;
+}
+
+function viewModule(m) {
+  const part = PARTS[m.part];
+  const isDone = !!done[m.id];
+  const figure = m.figure === 'ruled' ? figRuled() : m.figure === 'hatch' ? figHatch() : m.figure === 'field' ? figField() : '';
+  const code = m.code ? `
+    <section>
+      <h2>Rhino script</h2>
+      <div class="code-head"><span class="label">Python 3, Rhino 8 ScriptEditor</span><button class="btn" type="button" id="copyCode">Copy</button></div>
+      <pre id="codeBlock">${esc(RHINO_SCRIPT)}</pre>
+    </section>` : '';
+  return `
+    <div class="titleblock">
+      <div class="meta-row">
+        <span class="label">Sheet <b>${routeById[m.id].code}</b></span>
+        <span class="label">Part ${m.part}: ${esc(part.name)}</span>
+        <span class="label">Week ${m.week}</span>
+        ${m.optional ? '<span class="label">Optional</span>' : ''}
+      </div>
+      <h1>${esc(m.title)}</h1>
+      <p class="lede">${esc(m.idea)}</p>
+      <div class="chips"><span class="label">Trains</span>${m.trains.map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div>
+    </div>
+    <section>
+      <h2>Drills</h2>
+      <ol class="drills">${m.drills.map(d => `<li><span>${esc(d)}</span></li>`).join('')}</ol>
+      ${m.drillNote ? `<p class="note">${esc(m.drillNote)}</p>` : ''}
+    </section>
+    ${figure}
+    ${code}
+    <section>
+      <h2>Output</h2>
+      <p>${esc(m.output)}</p>
+      <div class="callout"><span class="label">Test</span><p>${esc(m.test)}</p></div>
+      ${m.extra ? `<p>${esc(m.extra)}</p>` : ''}
+    </section>
+    <section>
+      <h2>Look at <span class="label">${m.examples.length} works</span></h2>
+      ${exampleCards(m.examples)}
+    </section>
+    <div class="done-row">
+      <button class="btn" type="button" id="doneBtn" aria-pressed="${isDone}">${isDone ? 'Module done' : 'Mark module done'}</button>
+      <span class="note">Saved in this browser only.</span>
+    </div>
+    ${pager(m.id)}`;
+}
+
+function viewCapstone() {
+  const items = CAPSTONE_ITEMS.map((t, i) => `
+    <li><label for="cap${i}"><input type="checkbox" id="cap${i}" data-cap="${i}" ${capChecks[i] ? 'checked' : ''}><span>${esc(t)}</span></label></li>`).join('');
+  return `
+    <div class="titleblock">
+      <div class="meta-row"><span class="label">Sheet <b>C-01</b></span><span class="label">Weeks 11-12</span></div>
+      <h1>Capstone</h1>
+      <p class="lede">One real site under pressure, 8 to 12 drawings and a 1,000-word essay that takes a position. Fire scar, drought-dropped reservoir, fault line, dead mining town, flood plain: pick one you can visit.</p>
+    </div>
+    <section>
+      <h2>Requirements</h2>
+      <ul class="checklist">${items}</ul>
+      <p class="note">Ticks are saved in this browser only.</p>
+    </section>
+    <div class="callout"><span class="label">Before you call it done</span><p>Show it to the harshest reader you know.</p></div>
+    <section>
+      <h2>Look at <span class="label">whole bodies of work</span></h2>
+      ${exampleCards([
+        { title: 'Radical Reconstruction', year: '1997', where: 'CCA library record', med: 'Sarajevo, Havana, San Francisco', url: 'https://www.cca.qc.ca/en/search/details/library/publication/36458176',
+          look: 'Three cities under three kinds of pressure: war, embargo, earthquake. The table of contents alone is a capstone outline.' },
+        { title: 'Lebbeus Woods at SFMOMA', year: '1980-1998', where: 'SFMOMA', med: 'Collection list: Einstein Tomb, Centricity, Underground Berlin, Quake City, sketchbooks', url: 'https://www.sfmoma.org/artist/Lebbeus_Woods/?sa=1',
+          look: 'Five pages of holdings. Page through in date order and track how a series grows.' },
+        { title: 'Woods collections', year: 'ca. 1982-97', where: 'Getty Research Institute', med: 'A-City, 4 Cities and Beyond, Berlin Free Zone, journals 1988-97', url: 'https://www.getty.edu/research/special_collections/notable/lebbeus_woods.html',
+          look: 'Includes a 30-page Los Angeles sketchbook with handwritten notes. Requestable in person in LA.' }
+      ])}
+    </section>
+    ${pager('capstone')}`;
+}
+
+function viewRubric() {
+  const rows = RUBRIC.map((r, i) => `
+    <tr>
+      <td>${esc(r[0])}</td>
+      <td>${esc(r[1])}</td>
+      <td class="num"><div class="seg" role="radiogroup" aria-label="${esc(r[0])} score">
+        ${[0, 1, 2].map(v => `<input type="radio" name="rb${i}" id="rb${i}v${v}" value="${v}" ${scores[i] === v ? 'checked' : ''}><label for="rb${i}v${v}">${v}</label>`).join('')}
+      </div></td>
+    </tr>`).join('');
+  return `
+    <div class="titleblock">
+      <div class="meta-row"><span class="label">Sheet <b>C-02</b></span><span class="label">Every pin-up</span></div>
+      <h1>Rubric</h1>
+      <p class="lede">Score each series 0 to 2 per row, 16 max. Under 10, redo the weakest sheet before moving on.</p>
+    </div>
+    <section>
+      <h2>Score a series</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Criterion</th><th>Question</th><th class="num">Score</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+      <div class="score-line">
+        <span class="score-total" id="scoreTotal">0</span>
+        <span class="label">of 16</span>
+        <span class="verdict" id="verdict"></span>
+      </div>
+      <div><button class="btn" type="button" id="resetScore">Clear scores</button></div>
+    </section>
+    ${pager('rubric')}`;
+}
+
+function viewReading() {
+  const rows = READING.map(r => `
+    <tr>
+      <td>${r[4] ? `<a href="${esc(r[4])}" target="_blank" rel="noopener">${esc(r[0])}</a>` : esc(r[0])}</td>
+      <td class="num mono">${r[1]}</td>
+      <td>${esc(r[2])}</td>
+      <td class="num">${r[3].length ? modLinks(r[3]) : ''}</td>
+    </tr>`).join('');
+  return `
+    <div class="titleblock">
+      <div class="meta-row"><span class="label">Sheet <b>R-01</b></span></div>
+      <h1>Reading list</h1>
+      <p class="lede">Start with the first two rows. Read one item per module alongside the drawing work.</p>
+    </div>
+    <section>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Title</th><th class="num">Year</th><th>Use it for</th><th class="num">Modules</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+      <p class="note">Make private study copies of details in your notebook. Don't publish or sell copies of his drawings.</p>
+    </section>
+    ${pager('reading')}`;
+}
+
+function viewSources() {
+  return `
+    <div class="titleblock">
+      <div class="meta-row"><span class="label">Sheet <b>R-02</b></span><span class="label">As of 21 Oct 2026</span></div>
+      <h1>Sources</h1>
+      <p class="lede">Every fact and every example on this site traces to one of these pages.</p>
+    </div>
+    <section>
+      <ul class="plain">${SOURCES.map(s => `<li><a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a></li>`).join('')}</ul>
+    </section>
+    ${pager('sources')}`;
+}
+
+/* ---------- figure markup ---------- */
+function figRuled() {
+  return `
+    <figure>
+      <canvas id="ruledCv" aria-label="Hyperbolic paraboloid drawn as two families of straight lines"></canvas>
+      <div class="fig-body controls">
+        <div class="ctl"><label for="ruledN">Lines per family <output id="ruledNo">24</output></label><input type="range" id="ruledN" min="6" max="60" value="24"></div>
+        <div class="ctl"><label for="ruledH">Twist <output id="ruledHo">0.9</output></label><input type="range" id="ruledH" min="0" max="16" value="9"></div>
+        <div class="ctl"><label for="ruledR">Rotate <output id="ruledRo">35&deg;</output></label><input type="range" id="ruledR" min="0" max="180" value="35"></div>
+      </div>
+      <figcaption>Every line here is straight. The curve appears where the two families cross. Draw it by hand from two skewed edges, dividing each into equal parts.</figcaption>
+    </figure>`;
+}
+function figHatch() {
+  return `
+    <figure>
+      <div class="fig-body">
+        <span class="row-cap">Parallel hatching only</span>
+        <canvas id="hatchA" aria-label="Nine-step value scale from parallel hatching"></canvas>
+        <span class="row-cap">Crosshatching, layers 15 to 30 degrees apart</span>
+        <canvas id="hatchB" aria-label="Nine-step value scale from crosshatching at acute angles"></canvas>
+      </div>
+      <figcaption>Value from spacing and layering alone. Parallel hatching runs out of darkness around step 6; acute crosshatching keeps going.</figcaption>
+    </figure>`;
+}
+function figField() {
+  return `
+    <figure>
+      <canvas id="fieldCv" aria-label="Line field preview"></canvas>
+      <div class="fig-body controls">
+        <div class="ctl"><label for="fN">Lines <output id="fNo">600</output></label><input type="range" id="fN" min="100" max="1400" step="50" value="600"></div>
+        <div class="ctl"><label for="fA">Direction A <output id="fAo">12&deg;</output></label><input type="range" id="fA" min="0" max="179" value="12"></div>
+        <div class="ctl"><label for="fB">Direction B <output id="fBo">31&deg;</output></label><input type="range" id="fB" min="0" max="179" value="31"></div>
+        <div class="ctl"><label for="fC">Direction C <output id="fCo">147&deg;</output></label><input type="range" id="fC" min="0" max="179" value="147"></div>
+        <div class="ctl"><label for="fJ">Jitter <output id="fJo">6&deg;</output></label><input type="range" id="fJ" min="0" max="25" value="6"></div>
+        <button class="btn" type="button" id="fSeed">New seed</button>
+      </div>
+      <figcaption>Same logic as the script: three dominant directions, small jitter, mostly short lines with a few long ones. Find settings you like here, then copy the numbers into Rhino.</figcaption>
+    </figure>`;
+}
+
+/* ============================================================
+   Drawing (canvas). Colors come from theme tokens on every draw.
+   ============================================================ */
+const tok = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+function prepCanvas(cv, cssH) {
+  const w = cv.clientWidth || cv.parentElement.clientWidth;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  cv.style.height = cssH + 'px';
+  cv.width = Math.round(w * dpr);
+  cv.height = Math.round(cssH * dpr);
+  const ctx = cv.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, cssH);
+  return { ctx, w, h: cssH };
+}
+
+// Seeded random so a field can be reproduced.
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+// Triangular distribution, same signature idea as Python's random.triangular(low, high, mode).
+function triangular(r, lo, hi, mode) {
+  const u = r(), c = (mode - lo) / (hi - lo);
+  return u < c ? lo + Math.sqrt(u * (hi - lo) * (mode - lo)) : hi - Math.sqrt((1 - u) * (hi - lo) * (hi - mode));
+}
+
+function drawField(cv, cssH, opts) {
+  const { ctx, w, h } = prepCanvas(cv, cssH);
+  const r = mulberry32(opts.seed);
+  const scale = Math.max(w, h) / 600;  // keep line lengths proportional to the canvas
+  ctx.strokeStyle = tok('--ink');
+  ctx.lineCap = 'round';
+  for (let i = 0; i < opts.n; i++) {
+    const deg = opts.dirs[Math.floor(r() * opts.dirs.length)] + (r() * 2 - 1) * opts.jitter;
+    const a = deg * Math.PI / 180;
+    const len = triangular(r, 10, 400, 40) * scale;
+    const x = r() * w, y = r() * h;
+    const dx = Math.cos(a) * len / 2, dy = -Math.sin(a) * len / 2;  // canvas y points down
+    ctx.globalAlpha = 0.28 + r() * 0.6;
+    ctx.lineWidth = 0.5 + r() * 0.9;
+    ctx.beginPath(); ctx.moveTo(x - dx, y - dy); ctx.lineTo(x + dx, y + dy); ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+
+function drawRuled(cv) {
+  const cssH = Math.min(380, Math.max(260, cv.clientWidth * 0.62));
+  const { ctx, w, h } = prepCanvas(cv, cssH);
+  const n = +document.getElementById('ruledN').value;
+  const hh = +document.getElementById('ruledH').value / 10;
+  const rot = +document.getElementById('ruledR').value * Math.PI / 180;
+  // Hyperbolic paraboloid z = h*x*y on the square [-1,1]^2. Straight in both x and y.
+  const z = (x, y) => hh * x * y;
+  const proj = (x, y) => {
+    const xr = x * Math.cos(rot) - y * Math.sin(rot);
+    const yr = x * Math.sin(rot) + y * Math.cos(rot);
+    return [xr, yr * 0.5 - z(x, y) * 0.75];  // simple axonometric
+  };
+  // Fit to canvas.
+  const corners = [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([x, y]) => proj(x, y));
+  const xs = corners.map(c => c[0]), ys = corners.map(c => c[1]);
+  const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+  const s = Math.min((w - 48) / (maxX - minX || 1), (h - 48) / (maxY - minY || 1));
+  const ox = w / 2 - s * (minX + maxX) / 2, oy = h / 2 - s * (minY + maxY) / 2;
+  const P = (x, y) => { const p = proj(x, y); return [ox + p[0] * s, oy + p[1] * s]; };
+  const line = (a, b) => { ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); };
+
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= n; i++) {
+    const t = -1 + 2 * i / n;
+    ctx.strokeStyle = tok('--ink'); ctx.globalAlpha = 0.75;
+    line(P(t, -1), P(t, 1));           // family 1: constant x
+    ctx.strokeStyle = tok('--accent'); ctx.globalAlpha = 0.85;
+    line(P(-1, t), P(1, t));           // family 2: constant y
+  }
+  ctx.globalAlpha = 1; ctx.lineWidth = 2; ctx.strokeStyle = tok('--ink');
+  line(P(-1, -1), P(1, -1)); line(P(1, -1), P(1, 1)); line(P(1, 1), P(-1, 1)); line(P(-1, 1), P(-1, -1));
+}
+
+function drawHatch(cv, cross) {
+  const steps = 9, gap = 6;
+  const w0 = cv.clientWidth || 600;
+  const cell = Math.max(24, (w0 - gap * (steps - 1)) / steps);
+  const labelH = 18;
+  const { ctx, w } = prepCanvas(cv, cell + labelH);
+  const ink = tok('--ink'), lead = tok('--lead'), rule = tok('--rule');
+  ctx.font = '11px ' + tok('--f-mono');
+  ctx.textAlign = 'center';
+  for (let i = 0; i < steps; i++) {
+    const x0 = i * (cell + gap), d = i / (steps - 1);
+    ctx.strokeStyle = rule; ctx.lineWidth = 1; ctx.globalAlpha = 1;
+    ctx.strokeRect(x0 + 0.5, 0.5, cell - 1, cell - 1);
+    ctx.save();
+    ctx.beginPath(); ctx.rect(x0 + 1, 1, cell - 2, cell - 2); ctx.clip();
+    ctx.strokeStyle = ink; ctx.lineWidth = 0.9;
+    const layers = !cross ? [[45, 1]] : d < 0.4 ? [[45, 1]] : d < 0.75 ? [[45, 1], [70, 1]] : [[45, 1], [70, 1], [20, 1]];
+    if (i > 0) {
+      // Spacing tightens with darkness; parallel-only bottoms out at a minimum spacing.
+      const minSp = cross ? 3.2 : 2.4;
+      const sp = 16 - (16 - minSp) * (cross ? Math.min(1, d * 1.25) : d);
+      layers.forEach(([deg]) => hatchCell(ctx, x0 + cell / 2, cell / 2, cell, deg, Math.max(minSp, sp)));
+    }
+    ctx.restore();
+    ctx.fillStyle = lead;
+    ctx.fillText(String(i), x0 + cell / 2, cell + 13);
+  }
+}
+function hatchCell(ctx, cx, cy, size, deg, sp) {
+  const a = deg * Math.PI / 180, dir = [Math.cos(a), -Math.sin(a)], nrm = [Math.sin(a), Math.cos(a)];
+  const reach = size;
+  for (let k = -reach; k <= reach; k += sp) {
+    const px = cx + nrm[0] * k, py = cy + nrm[1] * k;
+    ctx.beginPath();
+    ctx.moveTo(px - dir[0] * reach, py - dir[1] * reach);
+    ctx.lineTo(px + dir[0] * reach, py + dir[1] * reach);
+    ctx.stroke();
+  }
+}
+
+/* ---------- figure state + wiring ---------- */
+let heroSeed = 7;
+let fieldSeed = 7;
+
+function drawCurrentFigures() {
+  const hero = document.getElementById('heroField');
+  if (hero) {
+    const w = hero.clientWidth;
+    drawField(hero, 190, { seed: heroSeed, n: Math.round(w * 0.9), dirs: [12, 31, 147], jitter: 6 });
+  }
+  const ruled = document.getElementById('ruledCv');
+  if (ruled) drawRuled(ruled);
+  const ha = document.getElementById('hatchA');
+  if (ha) { drawHatch(ha, false); drawHatch(document.getElementById('hatchB'), true); }
+  const field = document.getElementById('fieldCv');
+  if (field) {
+    const v = id => +document.getElementById(id).value;
+    const cssH = Math.round(Math.min(420, field.clientWidth * 0.75));  // 24x18 aspect
+    drawField(field, cssH, { seed: fieldSeed, n: v('fN'), dirs: [v('fA'), v('fB'), v('fC')], jitter: v('fJ') });
+  }
+}
+
+function wireView(id) {
+  // Overview: clickable schedule rows, hero regenerate.
+  document.querySelectorAll('tr.rowlink').forEach(tr => tr.addEventListener('click', e => {
+    if (e.target.closest('a')) return;
+    location.hash = tr.dataset.go;
+  }));
+  const regen = document.getElementById('heroRegen');
+  if (regen) regen.addEventListener('click', () => { heroSeed = Math.floor(Math.random() * 1e6); drawCurrentFigures(); });
+
+  // Ruled surface controls.
+  [['ruledN', 'ruledNo', v => v], ['ruledH', 'ruledHo', v => (v / 10).toFixed(1)], ['ruledR', 'ruledRo', v => v + '°']].forEach(([inp, out, fmt]) => {
+    const el = document.getElementById(inp);
+    if (!el) return;
+    el.addEventListener('input', () => { document.getElementById(out).textContent = fmt(+el.value); drawRuled(document.getElementById('ruledCv')); });
+  });
+
+  // Line-field controls.
+  [['fN', 'fNo', v => v], ['fA', 'fAo', v => v + '°'], ['fB', 'fBo', v => v + '°'], ['fC', 'fCo', v => v + '°'], ['fJ', 'fJo', v => v + '°']].forEach(([inp, out, fmt]) => {
+    const el = document.getElementById(inp);
+    if (!el) return;
+    el.addEventListener('input', () => { document.getElementById(out).textContent = fmt(+el.value); drawCurrentFigures(); });
+  });
+  const seedBtn = document.getElementById('fSeed');
+  if (seedBtn) seedBtn.addEventListener('click', () => { fieldSeed = Math.floor(Math.random() * 1e6); drawCurrentFigures(); });
+
+  // Copy the Rhino script.
+  const copyBtn = document.getElementById('copyCode');
+  if (copyBtn) copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(RHINO_SCRIPT)
+      .then(() => { copyBtn.textContent = 'Copied'; setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1600); })
+      .catch(() => {
+        // Clipboard refused: select the code so the viewer can copy it themselves.
+        const sel = window.getSelection(), range = document.createRange();
+        range.selectNodeContents(document.getElementById('codeBlock'));
+        sel.removeAllRanges(); sel.addRange(range);
+        copyBtn.textContent = 'Selected, press copy';
+      });
+  });
+
+  // Module done toggle.
+  const doneBtn = document.getElementById('doneBtn');
+  if (doneBtn) doneBtn.addEventListener('click', () => {
+    done[id] = !done[id];
+    if (!done[id]) delete done[id];
+    store.set('lw-done', done);
+    doneBtn.setAttribute('aria-pressed', String(!!done[id]));
+    doneBtn.textContent = done[id] ? 'Module done' : 'Mark module done';
+    renderNav(id);
+  });
+
+  // Capstone checklist.
+  document.querySelectorAll('input[data-cap]').forEach(cb => cb.addEventListener('change', () => {
+    capChecks[cb.dataset.cap] = cb.checked;
+    store.set('lw-capstone', capChecks);
+  }));
+
+  // Rubric scorer.
+  if (id === 'rubric') {
+    const update = () => {
+      let total = 0, count = 0;
+      RUBRIC.forEach((_, i) => {
+        const c = document.querySelector(`input[name="rb${i}"]:checked`);
+        if (c) { total += +c.value; count++; scores[i] = +c.value; } else { delete scores[i]; }
+      });
+      store.set('lw-rubric', scores);
+      document.getElementById('scoreTotal').textContent = total;
+      const v = document.getElementById('verdict');
+      if (count < RUBRIC.length) { v.className = 'verdict'; v.textContent = `${RUBRIC.length - count} of ${RUBRIC.length} rows still unscored.`; }
+      else if (total < 10) { v.className = 'verdict redo'; v.textContent = 'Under 10. Redo the weakest sheet before moving on.'; }
+      else { v.className = 'verdict pass'; v.textContent = '10 or more. Move to the next module.'; }
+    };
+    document.querySelectorAll('.seg input').forEach(r => r.addEventListener('change', update));
+    document.getElementById('resetScore').addEventListener('click', () => {
+      document.querySelectorAll('.seg input').forEach(r => { r.checked = false; });
+      update();
+    });
+    update();
+  }
+}
+
+/* ============================================================
+   Nav + router
+   ============================================================ */
+function renderNav(current) {
+  const groups = [
+    ['Start', ROUTES.filter(r => r.group === 'Start')],
+    ['Part 1: ' + PARTS[1].name, ROUTES.filter(r => r.group === 'Part 1')],
+    ['Part 2: ' + PARTS[2].name, ROUTES.filter(r => r.group === 'Part 2')],
+    ['Part 3: ' + PARTS[3].name, ROUTES.filter(r => r.group === 'Part 3')],
+    ['Finish', ROUTES.filter(r => r.group === 'Finish')]
+  ];
+  const doneCount = MODULES.filter(m => done[m.id]).length;
+  document.getElementById('nav').innerHTML = `
+    <div class="brand">
+      <a class="brand-title" href="#overview">Drawing like Lebbeus Woods</a>
+      <div class="progress">
+        <div class="progress-bar" aria-hidden="true"><div class="progress-fill" style="width:${doneCount * 10}%"></div></div>
+        <span class="label">${doneCount}/10 done</span>
+      </div>
+    </div>
+    ${groups.map(([name, items]) => `
+      <div class="nav-group">
+        <span class="label">${esc(name)}</span>
+        ${items.map(r => `
+          <a href="#${r.id}" ${r.id === current ? 'aria-current="page"' : ''}>
+            <span class="code">${r.code}</span>
+            <span>${esc(r.title)}</span>
+            ${r.module ? `<span class="tick ${done[r.id] ? 'on' : ''}" aria-label="${done[r.id] ? 'done' : 'not done'}"></span>` : '<span></span>'}
+          </a>`).join('')}
+      </div>`).join('')}`;
+}
+
+function render() {
+  const raw = location.hash.slice(1);
+  const id = routeById[raw] ? raw : 'overview';
+  const view = document.getElementById('view');
+  let html;
+  if (id === 'overview') html = viewOverview();
+  else if (id === 'kit') html = viewKit();
+  else if (id === 'rhythm') html = viewRhythm();
+  else if (id === 'capstone') html = viewCapstone();
+  else if (id === 'rubric') html = viewRubric();
+  else if (id === 'reading') html = viewReading();
+  else if (id === 'sources') html = viewSources();
+  else html = viewModule(modById[id]);
+  view.innerHTML = html;
+  renderNav(id);
+  wireView(id);
+  drawCurrentFigures();
+  // Close the phone menu and land at the top of the new sheet.
+  const nav = document.getElementById('nav');
+  nav.classList.remove('open');
+  document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
+  window.scrollTo(0, 0);
+  if (raw) view.focus({ preventScroll: true });
+}
+
+document.getElementById('navToggle').addEventListener('click', e => {
+  const nav = document.getElementById('nav');
+  const open = nav.classList.toggle('open');
+  e.currentTarget.setAttribute('aria-expanded', String(open));
+});
+window.addEventListener('hashchange', render);
+
+// Redraw canvases when the size or theme changes.
+let resizeTimer;
+window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(drawCurrentFigures, 120); });
+try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawCurrentFigures); } catch (e) { /* older browsers */ }
+new MutationObserver(drawCurrentFigures).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawCurrentFigures);
+
+render();
+</script>
+</body>
+</html>
